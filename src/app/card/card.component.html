@@ -1,0 +1,26 @@
+<div class="container">
+  <mat-card class="card" *ngFor="let item of arr" (click)="onClick(item)">
+    <mat-card-title class="title">{{item.title}}</mat-card-title>
+    <mat-card-content class="background">
+      <ng-container *ngIf="item.isLoading;else unset">
+        <div class="flex-container">
+          <mat-spinner [diameter]="80"></mat-spinner>
+        </div>
+      </ng-container>
+      <ng-template #unset>
+        <mat-selection-list>
+          <mat-list-item>
+            тип:&nbsp;<span class="color">{{item.type}} </span>
+          </mat-list-item>
+          <mat-list-item>
+            дата:&nbsp;<span class="color">{{toDate(item.date)}}</span>
+          </mat-list-item>
+          <mat-list-item>
+            статус:&nbsp;<span [ngClass]="item.status">{{item.status}}</span>
+          </mat-list-item>
+        </mat-selection-list>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>
+
